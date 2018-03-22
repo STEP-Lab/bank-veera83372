@@ -35,4 +35,11 @@ public class Account {
     public String getAccountNumber() {
         return accountNumber;
     }
+
+    public float withdraw(float amount) throws  InsufficientFundsException{
+        if(balance < amount) {
+            throw new InsufficientFundsException();
+        }
+        return balance -= amount;
+    }
 }
