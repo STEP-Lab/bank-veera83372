@@ -1,2 +1,6 @@
-rootProject.name = 'bank_assignment'
+rootProject.name = 'bank'
+rootProject.name = 'bank'
+include 'application'
+findProject(':application')?.name = 'bank'
+include 'library'
 

@@ -1,5 +1,4 @@
-group 'come.thoughtworks'
-version '1.0-SNAPSHOT'
+version 'unspecified'
 
 apply plugin: 'java'
 
