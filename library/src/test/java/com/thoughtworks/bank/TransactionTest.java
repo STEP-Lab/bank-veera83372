@@ -29,9 +29,4 @@ public class TransactionTest {
         assertThat(transaction.getDate(),is(date));
     }
 
-    @Test
-    public void mustReturnCSV() {
-        assertThat(transaction.toCSV(),is("Another Account,1000.0,"+date.toString()));
-    }
-
 }

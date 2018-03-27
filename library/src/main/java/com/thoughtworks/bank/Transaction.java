@@ -46,8 +46,20 @@ public class Transaction {
         return amount;
     }
 
-    public String toCSV() {
-        return String.format("%s,%s,%s",to,amount,date);
+
+    public boolean isGreaterThan(double amount) {
+        return this.amount>amount;
     }
 
+    public boolean isLessThan(double amount) {
+        return this.amount<amount;
+    }
+
+    public boolean isAfter(Date date) {
+        return this.date.compareTo(date) == 1;
+    }
+
+    public boolean isBefore(Date date) {
+        return this.date.compareTo(date) == -1;
+    }
 }

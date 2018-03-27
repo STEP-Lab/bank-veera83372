@@ -22,7 +22,7 @@ public class Transactions {
     public Transactions filterByAmountGreaterThan(double amount) {
         Transactions transactions = new Transactions();
         for (Transaction transaction : list) {
-            if (transaction.getAmount() > amount)
+            if (transaction.isGreaterThan(amount))
                 transactions.list.add(transaction);
         }
         return transactions;
@@ -34,17 +34,11 @@ public class Transactions {
         }
     }
 
-    public void writeCSVTo(PrintWriter printWriter) {
-        String[] headers = {"To","Amount","Date"};
-        CSVWriter writer = new CSVWriter(printWriter,headers);
-        writer.write(list);
-        writer.close();
-    }
 
     public Transactions filterByAmountLessThan(double amount) {
         Transactions transactions = new Transactions();
         for (Transaction transaction : list) {
-            if (transaction.getAmount() < amount)
+            if (transaction.isLessThan(amount))
                 transactions.list.add(transaction);
         }
         return transactions;
@@ -71,7 +65,7 @@ public class Transactions {
     public Transactions getAllTransactionsAfter(Date date) {
         Transactions transactions = new Transactions();
         for (Transaction transaction : list) {
-            if (transaction.getDate().compareTo(date) == 1)
+            if (transaction.isAfter(date))
                 transactions.list.add(transaction);
         }
         return transactions;
@@ -80,7 +74,7 @@ public class Transactions {
     public Transactions getAllTransactionsBefore(Date date) {
         Transactions transactions = new Transactions();
         for (Transaction transaction : list) {
-            if (transaction.getDate().compareTo(date) == -1)
+            if (transaction.isBefore(date))
                 transactions.list.add(transaction);
         }
         return transactions;
