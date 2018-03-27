@@ -46,4 +46,8 @@ public class Transaction {
         return amount;
     }
 
+    public String toCSV() {
+        return String.format("%s,%s,%s",to,amount,date);
+    }
+
 }
