@@ -10,12 +10,12 @@ public class AccountTest {
     private Account account;
     @Before
     public void setUp() throws Exception {
-        account = new Account(new AccountNumber("1234-1234"), 1000);
+        account = new Account(new AccountNumber("1234-1234"), 1100);
     }
 
     @Test
     public void getBalance() {
-        assertEquals(account.getBalance(),1000 );
+        assertEquals(account.getBalance(),1100,0 );
     }
 
 
@@ -30,12 +30,12 @@ public class AccountTest {
     }
 
     @Test
-    public void withdraw() throws InsufficientFundsException {
-        assertEquals(account.withdraw(100),900,0);
+    public void withdraw() throws MinimumBalanceException {
+        assertEquals(account.withdraw(100),1000,0);
     }
 
-    @Test(expected = InsufficientFundsException.class)
-    public void checkInsufficientBalance() throws InsufficientFundsException {
+    @Test(expected = MinimumBalanceException.class)
+    public void checkInsufficientBalance() throws MinimumBalanceException {
         account.withdraw(1500);
     }
 }

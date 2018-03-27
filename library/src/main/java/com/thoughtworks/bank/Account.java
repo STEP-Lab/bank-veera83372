@@ -4,24 +4,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Account {
-    private static final int MinimumBalance;
+    private static final int MINIMUM_BALANCE;
 
     static {
-        MinimumBalance = 1000;
+        MINIMUM_BALANCE = 1000;
     }
 
     private final AccountNumber accountNumber;
-    private int balance;
+    private double balance;
 
-    public Account(AccountNumber accountNumber, int balance) throws MinimumBalanceException, InvalidAccountNumberException {
+    public Account(AccountNumber accountNumber, double balance) throws MinimumBalanceException, InvalidAccountNumberException {
         this.accountNumber = accountNumber;
-        if(balance<MinimumBalance){
-            throw new MinimumBalanceException();
-        }
+        checkMinimumBalance(balance);
         this.balance = balance;
     }
 
-    public int getBalance() {
+    private static void checkMinimumBalance(double balance) throws MinimumBalanceException {
+        if(balance<MINIMUM_BALANCE){
+            throw new MinimumBalanceException();
+        }
+    }
+
+    public double getBalance() {
         return balance;
     }
 
@@ -29,10 +33,10 @@ public class Account {
         return accountNumber;
     }
 
-    public float withdraw(float amount) throws  InsufficientFundsException{
-        if(balance < amount) {
-            throw new InsufficientFundsException();
-        }
-        return balance -= amount;
+    public double withdraw(float amount) throws MinimumBalanceException {
+        double bal=this.balance-amount;
+        checkMinimumBalance(bal);
+        this.balance = bal;
+        return getBalance();
     }
 }
