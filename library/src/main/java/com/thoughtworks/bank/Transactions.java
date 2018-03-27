@@ -7,6 +7,7 @@ import java.util.Date;
 public class Transactions {
 
     protected ArrayList<Transaction> list;
+    private ArrayList<Transaction> transactions;
 
     Transactions() {
         this.list = new ArrayList<>();
@@ -79,4 +80,5 @@ public class Transactions {
         }
         return transactions;
     }
+
 }

@@ -31,11 +31,21 @@ public class AccountTest {
 
     @Test
     public void withdraw() throws MinimumBalanceException {
-        assertEquals(account.withdraw(100),1000,0);
+        assertEquals(account.withdraw(100,"veera"),1000,0);
     }
 
     @Test(expected = MinimumBalanceException.class)
     public void checkInsufficientBalance() throws MinimumBalanceException {
-        account.withdraw(1500);
+        account.withdraw(1500,"veeru");
+    }
+    @Test
+    public void credit() {
+        assertThat(account.credit(200.0,"Account"), is(1300.0));
+        assertThat(account.getBalance(), is(1300.0));
+    }
+
+    @Test(expected = MinimumBalanceException.class)
+    public void withdrawMinimumBalance() throws MinimumBalanceException, InvalidAccountNumberException {
+        new Account(new AccountNumber("1234-1234"), 1000).withdraw(200.0, "Account");
     }
 }
